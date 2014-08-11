@@ -17,7 +17,7 @@ public class Article extends IdEntity {
 	private String title;
 	@ManyToOne
 	@JoinColumn(name = "cid")
-	private ArtClassify artClassify;
+	private ArticleClassify artClassify;
 	private String keyword;
 	private String descri;
 	private String pic;
@@ -34,10 +34,10 @@ public class Article extends IdEntity {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public ArtClassify getArtClassify() {
+	public ArticleClassify getArtClassify() {
 		return artClassify;
 	}
-	public void setArtClassify(ArtClassify artClassify) {
+	public void setArtClassify(ArticleClassify artClassify) {
 		this.artClassify = artClassify;
 	}
 	public String getKeyword() {
