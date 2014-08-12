@@ -47,10 +47,10 @@ public class ArticleClassifyService {
 		return (List<ArticleClassify>) articleClassifyDao.findAll();
 	}
 
-	public Page<ArticleClassify> getUserArticleClassify(Long userId, Map<String, Object> searchParams, int pageNumber, int pageSize,
+	public Page<ArticleClassify> getUserArticleClassify(Long fId, Map<String, Object> searchParams, int pageNumber, int pageSize,
 			String sortType) {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
-		Specification<ArticleClassify> spec = buildSpecification(userId, searchParams);
+		Specification<ArticleClassify> spec = buildSpecification(fId, searchParams);
 
 		return articleClassifyDao.findAll(spec, pageRequest);
 	}
@@ -72,9 +72,9 @@ public class ArticleClassifyService {
 	/**
 	 * 创建动态查询条件组合.
 	 */
-	private Specification<ArticleClassify> buildSpecification(Long userId, Map<String, Object> searchParams) {
+	private Specification<ArticleClassify> buildSpecification(Long fId, Map<String, Object> searchParams) {
 		Map<String, SearchFilter> filters = SearchFilter.parse(searchParams);
-		filters.put("user.id", new SearchFilter("user.id", Operator.EQ, userId));
+		filters.put("user.id", new SearchFilter("father.id", Operator.EQ, fId));
 		Specification<ArticleClassify> spec = DynamicSpecifications.bySearchFilter(filters.values(), ArticleClassify.class);
 		return spec;
 	}

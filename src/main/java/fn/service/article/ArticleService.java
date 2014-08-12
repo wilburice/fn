@@ -74,7 +74,7 @@ public class ArticleService {
 	 */
 	private Specification<Article> buildSpecification(Long userId, Map<String, Object> searchParams) {
 		Map<String, SearchFilter> filters = SearchFilter.parse(searchParams);
-		filters.put("user.id", new SearchFilter("user.id", Operator.EQ, userId));
+		filters.put("user.id", new SearchFilter("author.id", Operator.EQ, userId));
 		Specification<Article> spec = DynamicSpecifications.bySearchFilter(filters.values(), Article.class);
 		return spec;
 	}

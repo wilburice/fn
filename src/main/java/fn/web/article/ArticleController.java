@@ -65,22 +65,22 @@ public class ArticleController {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		Long userId = getCurrentUserId();
 
-		Page<Article> Articles = articleService.getUserArticle(userId, searchParams, pageNumber, pageSize, sortType);
+		Page<Article> articles = articleService.getUserArticle(userId, searchParams, pageNumber, pageSize, sortType);
 
-		model.addAttribute("Articles", Articles);
+		model.addAttribute("articles", articles);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("sortTypes", sortTypes);
 		// 将搜索条件编码成字符串，用于排序，分页的URL
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 
-		return "Article/ArticleList";
+		return "article/articleList";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createForm(Model model) {
-		model.addAttribute("Article", new Article());
+		model.addAttribute("article", new Article());
 		model.addAttribute("action", "create");
-		return "Article/ArticleForm";
+		return "Article/articleForm";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
@@ -91,14 +91,14 @@ public class ArticleController {
 
 		articleService.saveArticle(newArticle);
 		redirectAttributes.addFlashAttribute("message", "创建文章成功");
-		return "redirect:/Article/";
+		return "redirect:/article/";
 	}
 
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("Article", articleService.getArticle(id));
 		model.addAttribute("action", "update");
-		return "Article/ArticleForm";
+		return "Article/articleForm";
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
@@ -106,14 +106,14 @@ public class ArticleController {
 		Article.setUpdateTime(new Date());
 		articleService.saveArticle(Article);
 		redirectAttributes.addFlashAttribute("message", "更新文章成功");
-		return "redirect:/Article/";
+		return "redirect:/article/";
 	}
 
 	@RequestMapping(value = "delete/{id}")
 	public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 		articleService.deleteArticle(id);
 		redirectAttributes.addFlashAttribute("message", "删除文章成功");
-		return "redirect:/Article/";
+		return "redirect:/article/";
 	}
 
 	/**
