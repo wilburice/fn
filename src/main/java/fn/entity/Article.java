@@ -15,14 +15,12 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Article extends IdEntity {
 	@NotBlank
 	private String title;
-	@ManyToOne
-	@JoinColumn(name = "cid")
+	
 	private ArticleClassify artClassify;
 	private String keyword;
 	private String descri;
 	private String pic;
-	@ManyToOne
-	@JoinColumn(name = "author")
+	
 	private User author;
 	private Date addTime;
 	private Date updateTime;
@@ -34,6 +32,9 @@ public class Article extends IdEntity {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "cid")
 	public ArticleClassify getArtClassify() {
 		return artClassify;
 	}
@@ -58,6 +59,9 @@ public class Article extends IdEntity {
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "author")
 	public User getAuthor() {
 		return author;
 	}

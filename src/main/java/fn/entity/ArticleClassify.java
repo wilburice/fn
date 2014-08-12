@@ -19,11 +19,10 @@ import org.hibernate.validator.constraints.NotBlank;
 public class ArticleClassify extends IdEntity {
 	@NotBlank
 	private String name;
-	@ManyToOne
-	@JoinColumn(name = "fid")
+	
 	private ArticleClassify father;
 	private Date updateTime;
-	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE },fetch=FetchType.LAZY,mappedBy="artClassify")
+	
 	private Set<Article> artList;
 
 	public String getName() {
@@ -32,6 +31,9 @@ public class ArticleClassify extends IdEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "fid")
 	public ArticleClassify getFather() {
 		return father;
 	}
@@ -44,6 +46,8 @@ public class ArticleClassify extends IdEntity {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE },fetch=FetchType.LAZY,mappedBy="artClassify")
 	public Set<Article> getArtList() {
 		return artList;
 	}
