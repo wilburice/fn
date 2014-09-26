@@ -26,7 +26,7 @@
 			<div class="control-group">
 				<label for="key" class="control-label">关键字:</label>
 				<div class="controls">
-					<textarea id="key" name="key" class="input-large">${article.key}</textarea>
+					<textarea id="key" name="key" class="input-large">${article.keyword}</textarea>
 				</div>
 			</div>
 			<div class="control-group">

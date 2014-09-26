@@ -80,7 +80,7 @@ public class ArticleController {
 	public String createForm(Model model) {
 		model.addAttribute("article", new Article());
 		model.addAttribute("action", "create");
-		return "Article/articleForm";
+		return "article/articleForm";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
@@ -96,9 +96,9 @@ public class ArticleController {
 
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("Article", articleService.getArticle(id));
+		model.addAttribute("article", articleService.getArticle(id));
 		model.addAttribute("action", "update");
-		return "Article/articleForm";
+		return "article/articleForm";
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
@@ -123,7 +123,7 @@ public class ArticleController {
 	@ModelAttribute
 	public void getArticle(@RequestParam(value = "id", defaultValue = "-1") Long id, Model model) {
 		if (id != -1) {
-			model.addAttribute("Article", articleService.getArticle(id));
+			model.addAttribute("article", articleService.getArticle(id));
 		}
 	}
 

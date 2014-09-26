@@ -20,6 +20,7 @@ public class Article extends IdEntity {
 	private String keyword;
 	private String descri;
 	private String pic;
+	private String content;
 	
 	private User author;
 	private Date addTime;
@@ -80,8 +81,11 @@ public class Article extends IdEntity {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	
-	
-	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	
 }
