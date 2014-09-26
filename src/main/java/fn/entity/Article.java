@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 //JPA标识
 @Entity
-@Table(name = "fn_art_classify")
+@Table(name = "fn_article")
 public class Article extends IdEntity {
 	@NotBlank
 	private String title;
