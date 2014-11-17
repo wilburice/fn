@@ -25,7 +25,7 @@ CREATE TABLE `fn_art_classify`(
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `fid` BIGINT,
-  `updateTime` TIMESTAMP,
+  `update_time` TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB CHARSET=utf8;
 
@@ -36,11 +36,11 @@ CREATE TABLE `fn_article`(
   `cid` BIGINT,
   `keyword` VARCHAR(255),
   `descri` VARCHAR(255),
-  `centent` TEXT,
+  `content` TEXT,
   `pic` VARCHAR(255),
   `author` BIGINT,
-  `addTime` TIMESTAMP,
-  `updateTime` TIMESTAMP,
+  `add_time` TIMESTAMP,
+  `update_time` TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB CHARSET=utf8;
 

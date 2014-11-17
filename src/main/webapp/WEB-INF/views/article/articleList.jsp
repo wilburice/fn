@@ -27,8 +27,8 @@
 		<tbody>
 		<c:forEach items="${articles.content}" var="article">
 			<tr>
-				<td><a href="${ctx}/task/update/${article.id}">${article.title}</a></td>
-				<td><a href="${ctx}/task/delete/${article.id}">删除</a></td>
+				<td><a href="${ctx}/article/update/${article.id}">${article.title}</a></td>
+				<td><a href="${ctx}/article/delete/${article.id}">删除</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>
@@ -36,6 +36,6 @@
 	
 	<tags:pagination page="${articles}" paginationSize="5"/>
 
-	<div><a class="btn" href="${ctx}/task/create">创建文章</a></div>
+	<div><a class="btn" href="${ctx}/article/create">创建文章</a></div>
 </body>
 </html>
