@@ -27,8 +27,8 @@
 		<tbody>
 		<c:forEach items="${articleClassifys.content}" var="articleClassify">
 			<tr>
-				<td><a href="${ctx}/task/update/${articleClassify.id}">${articleClassify.name}</a></td>
-				<td><a href="${ctx}/task/delete/${articleClassify.id}">删除</a></td>
+				<td><a href="${ctx}/articleClassify/update/${articleClassify.id}">${articleClassify.name}</a></td>
+				<td><a href="${ctx}/articleClassify/delete/${articleClassify.id}">删除</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>
@@ -36,6 +36,6 @@
 	
 	<tags:pagination page="${articleClassifys}" paginationSize="5"/>
 
-	<div><a class="btn" href="${ctx}/task/create">创建文章栏目</a></div>
+	<div><a class="btn" href="${ctx}/articleClassify/create">创建文章栏目</a></div>
 </body>
 </html>

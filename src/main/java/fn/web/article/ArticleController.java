@@ -102,9 +102,11 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("Article") Article Article, RedirectAttributes redirectAttributes) {
-		Article.setUpdateTime(new Date());
-		articleService.saveArticle(Article);
+	public String update(@Valid @ModelAttribute("article") Article article, RedirectAttributes redirectAttributes) {
+		article.setUpdateTime(new Date());
+		User user = new User(getCurrentUserId());
+		article.setAuthor(user);
+		articleService.saveArticle(article);
 		redirectAttributes.addFlashAttribute("message", "更新文章成功");
 		return "redirect:/article/";
 	}

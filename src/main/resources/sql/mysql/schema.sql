@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS fn_art_classify;
 CREATE TABLE `fn_art_classify`( 
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
-  `fid` BIGINT,
+  `fid` BIGINT default 0,
   `update_time` TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB CHARSET=utf8;

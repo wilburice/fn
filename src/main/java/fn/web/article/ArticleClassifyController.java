@@ -6,6 +6,8 @@
 package fn.web.article;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -60,13 +62,13 @@ public class ArticleClassifyController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
 			@RequestParam(value = "page.size", defaultValue = PAGE_SIZE) int pageSize,
-			@RequestParam(value = "page.size", defaultValue = "0") int fid,
+			@RequestParam(value = "fid", defaultValue = "0") long fid,
 			@RequestParam(value = "sortType", defaultValue = "auto") String sortType, Model model,
 			ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		Long userId = getCurrentUserId();
 
-		Page<ArticleClassify> articleClassifys = articleClassifyService.getUserArticleClassify(userId, searchParams, pageNumber, pageSize, sortType);
+		Page<ArticleClassify> articleClassifys = articleClassifyService.getUserArticleClassify(fid, searchParams, pageNumber, pageSize, sortType);
 
 		model.addAttribute("articleClassifys", articleClassifys);
 		model.addAttribute("sortType", sortType);
@@ -79,6 +81,9 @@ public class ArticleClassifyController {
 
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createForm(Model model) {
+		Map<String, Object> searchParam = new HashMap<String, Object>();
+		List<ArticleClassify> articleClassifys = articleClassifyService.getAllArticleClassify();
+		model.addAttribute("articleClassifyList", articleClassifys);
 		model.addAttribute("articleClassify", new ArticleClassify());
 		model.addAttribute("action", "create");
 		return "articleClassify/articleClassifyForm";
@@ -90,12 +95,13 @@ public class ArticleClassifyController {
 		newArticleClassify.setUpdateTime(new Date());
 
 		articleClassifyService.saveArticleClassify(newArticleClassify);
-		redirectAttributes.addFlashAttribute("message", "创建文章成功");
+		redirectAttributes.addFlashAttribute("message", "创建文章栏目成功");
 		return "redirect:/articleClassify/";
 	}
 
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, Model model) {
+		List<ArticleClassify> articleClassifys = articleClassifyService.getAllArticleClassify();
 		model.addAttribute("articleClassify", articleClassifyService.getArticleClassify(id));
 		model.addAttribute("action", "update");
 		return "articleClassify/articleClassifyForm";
@@ -105,14 +111,14 @@ public class ArticleClassifyController {
 	public String update(@Valid @ModelAttribute("articleClassify") ArticleClassify articleClassify, RedirectAttributes redirectAttributes) {
 		articleClassify.setUpdateTime(new Date());
 		articleClassifyService.saveArticleClassify(articleClassify);
-		redirectAttributes.addFlashAttribute("message", "更新文章成功");
+		redirectAttributes.addFlashAttribute("message", "更新文章栏目成功");
 		return "redirect:/articleClassify/";
 	}
 
 	@RequestMapping(value = "delete/{id}")
 	public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 		articleClassifyService.deleteArticleClassify(id);
-		redirectAttributes.addFlashAttribute("message", "删除文章成功");
+		redirectAttributes.addFlashAttribute("message", "删除文章栏目成功");
 		return "redirect:/articleClassify/";
 	}
 

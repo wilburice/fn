@@ -54,7 +54,7 @@ public class ArticleClassifyService {
 
 		return articleClassifyDao.findAll(spec, pageRequest);
 	}
-
+	
 	/**
 	 * 创建分页请求.
 	 */
@@ -74,7 +74,7 @@ public class ArticleClassifyService {
 	 */
 	private Specification<ArticleClassify> buildSpecification(Long fId, Map<String, Object> searchParams) {
 		Map<String, SearchFilter> filters = SearchFilter.parse(searchParams);
-		filters.put("user.id", new SearchFilter("father.id", Operator.EQ, fId));
+		filters.put("father", new SearchFilter("father.id", Operator.EQ, fId));
 		Specification<ArticleClassify> spec = DynamicSpecifications.bySearchFilter(filters.values(), ArticleClassify.class);
 		return spec;
 	}
